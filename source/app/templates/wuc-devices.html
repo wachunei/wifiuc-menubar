@@ -1,0 +1,64 @@
+<wuc-top-bar top-bar-title="{{barTitle}}" current-user="currentUser">
+  <span ng-click="app.updateDevices()" ng-hide="isEditing">
+    <i class="fa fa-refresh fa-fw" ng-class="{'fa-spin': isLoading}"></i>
+  </span>
+  <span ng-click="app.addDevice()" ng-hide="isEditing">
+    <i class="fa fa-plus fa-fw"></i>
+  </span>
+  <span ng-hide="isEditing">|</span>
+</wuc-top-bar>
+
+<div class="main-section">
+  <span class="deviceListloading" ng-show="isLoading">
+    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+  </span>
+  <div class="deviceList" ng-class="{disabled: isLoading || isEditing}">
+    <wuc-device ng-repeat="device in localDevices" device="device"></wuc-device>
+  </div>
+
+  <div class="devices-alert" ng-show="devicesAlert">
+    {{devicesAlertMessage}}
+  </div>
+  <div class="device-form" ng-show="isEditing">
+    <div class="device-form-alert" ng-show="deviceFormAlert">
+        {{deviceFormAlert}}
+    </div>
+    <form name="deviceForm" ng-submit="processFormAction()" novalidate>
+      <div>
+        <label>
+        Nombre:
+        <input type="text"
+          ng-model="editingModel.name"
+          ng-focus="clearFormAlert()"
+          maxlength="20"
+          required/>
+        </label>
+      </div>
+      <div ng-hide="formAction === 'edit'">
+        <label>
+          Dirección MAC:
+          <input type="text" ng-model="editingModel.mac"
+          ng-pattern="macRegex"
+          ng-change="formatMac()"
+          ng-focus="clearFormAlert()"
+          maxlength="17"
+          required/>
+        </label>
+      </div>
+      <div class="device-form-actions">
+        <button type="submit" class="btn clickable"
+          ng-disabled="deviceForm.$invalid">
+            {{formAction === 'add' ? 'Agregar' :
+            formAction === 'edit' ? 'Editar' : ''
+          }} Dispostivo
+          <span ng-show="formLoading">
+            <i class="fa fa-spinner fa-pulse fa-fw"></i>
+          </span>
+        </button>
+        <input type="button" class="btn btn-cancel clickable"
+          ng-click="resetForm()" value="Cancelar">
+        </input>
+      </div>
+    </form>
+  </div>
+</div>

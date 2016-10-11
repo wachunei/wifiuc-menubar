@@ -1,0 +1,22 @@
+<div class="device" ng-class="{'active-device': device.active == true}">
+  <div class="status">
+    <span class="clickable" ng-click="$parent.toggleStatus(device)"
+      ng-class="{toggleLoading: $parent.deviceLoading === device.mac}">
+      <i class="fa fa-toggle-on fa-fw"
+      ng-class="{'fa-rotate-180': device.active != true}"
+      ></i>
+    </span>
+  </div>
+  <div class="data">
+    <span class="name">{{device.name}}</span>
+    <span class="mac">{{device.mac | macAddress}}</span>
+  </div>
+  <div class="action">
+    <span class="clickable" ng-click="$parent.editDevice(device)">
+      <i class="fa fa-edit fa-fw"></i>
+    </span>
+    <span class="clickable" ng-click="$parent.removeDevice(device)">
+      <i class="fa fa-trash-o fa-fw"></i>
+    </span>
+  </div>
+</div>

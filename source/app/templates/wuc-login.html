@@ -1,0 +1,40 @@
+<wuc-top-bar top-bar-title="Iniciar Sesión"></wuc-top-bar>
+<div class="main-section main-login">
+  <div ng-show="loginAlert" class="login-alert">
+    <p>Hubo un error iniciando sesión, intenta de nuevo.
+  </div>
+  <div class="login-form">
+    <form name="loginForm" ng-submit="app.login()">
+      <div>
+        <label>
+          <i class="fa fa-user"></i>
+          <input type="text"
+            ng-model="credentials.username"
+            ng-model-options="{ updateOn: 'blur' }"
+            ng-change="app.cleanUsername()"
+            ng-focus="app.cleanAlert()"
+            placeholder="usuario uc"
+            required/>
+        </label>
+      </div>
+      <div>
+        <label>
+          <i class="fa fa-key"></i>
+          <input type="password" ng-model="credentials.password"
+          ng-focus="app.cleanAlert()"
+          placeholder="contraseña"
+          required/>
+        </label>
+      </div>
+      <div>
+        <button type="submit" class="btn clickable"
+          ng-disabled="loginForm.$invalid">
+            Iniciar Sesión
+          <span ng-show="loadingForm">
+            <i class="fa fa-spinner fa-pulse fa-fw"></i>
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

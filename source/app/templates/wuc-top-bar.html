@@ -1,0 +1,15 @@
+<div id="topbar">
+  <div class="title">
+    {{title}}
+    <span ng-if="currentUser" ng-include="'../templates/wuc-current-user.html'"></span>
+  </div>
+  <div class="actions">
+    <span class="custom-actions" ng-transclude></span>
+    <span class="clickable" ng-controller="AppController as app" ng-click="app.closeWindow()">
+      <i class="fa fa-compress fa-fw"></i>
+    </a>
+    <span class="clickable" ng-controller="AppController as app" ng-click="app.quit()">
+      <i class="fa fa-times fa-fw"></i>
+    </a>
+  </div>
+</div>

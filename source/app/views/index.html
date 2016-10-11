@@ -1,0 +1,33 @@
+<!doctype html>
+<html ng-app="WifiUCApp">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../styles/style.css" />
+        <link rel="stylesheet" href="../styles/font-awesome/css/font-awesome.min.css" />
+        <title>Wifi UC</title>
+    </head>
+
+    <body>
+      <div class="popup-container">
+        <div ng-view></div>
+      </div>
+
+      <script>
+        const {app, dialog, BrowserWindow} = require('electron').remote;
+        require('angular');
+        require('angular-route');
+        require('angular-local-storage');
+        require('angular-cookies');
+        const _ = require('underscore');
+        const cheerio = require('cheerio');
+        require('../js/app.js');
+        require('../js/services/portal-devices.js');
+        require('../js/directives/wuc-device.js');
+        require('../js/directives/wuc-top-bar.js');
+        require('../js/controllers/app-controller.js');
+        require('../js/controllers/login-controller.js');
+        require('../js/controllers/devices-controller.js');
+        require('../js/routes/routes.js');
+      </script>
+    </body>
+</html>
